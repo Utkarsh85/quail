@@ -1,6 +1,6 @@
 {
   "name": "quail-rest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hassle free mongodb rest app",
   "main": "index.js",
   "scripts": {
