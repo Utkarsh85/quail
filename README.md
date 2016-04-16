@@ -1,2 +1,3 @@
 # quail
-Hassle free mongodb rest app
+Hassle free mongodb rest app (Under Construction)
+# Installation

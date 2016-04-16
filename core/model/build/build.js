@@ -1,4 +1,4 @@
-var dbCore= require('require-all')( require("path").resolve('./core/model/dbCore') );
+var dbCore= require('require-all')( require("path").resolve(__dirname,'../dbCore') );
 var validate= require('../validation/validate');
 
 module.exports= function (modelName,model) {
