@@ -1,11 +1,20 @@
 var mongoDB = require('mongodb');
 var Promise = require('bluebird');
 
-module.exports= function (model,query,sort,limit,skip) {
+module.exports= function (model,query,projection,sort,limit,skip) {
 	var db = require( '../../db/mongodb/mongodb' ).getDb();
 	
-	var fullQuery= db.collection( model )
-	.find(query);
+	var fullQuery;
+
+	if(projection)
+	{
+		fullQuery= db.collection( model ).find(query,projection);
+	}
+	else
+	{
+		fullQuery= db.collection( model ).find(query);
+	}
+
 	if(sort)
 		fullQuery= fullQuery.sort(sort);
 	if(skip)

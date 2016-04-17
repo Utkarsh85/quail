@@ -8,7 +8,16 @@ module.exports= function (modelName,model) {
 		find: function (query,sort,limit,skip) {
 			if(!model.hasOwnProperty('embeded'))
 			{
-				return dbCore.find(modelName,query,sort,limit,skip);
+				if(model.hasOwnProperty('noProjection') && Array.isArray(model.noProjection))
+				{
+					var projectionObj={};
+					model.noProjection.map(function (val) {
+						projectionObj[val]=0;
+					});
+					return dbCore.find(modelName,query,projectionObj,sort,limit,skip);
+				}
+				else
+					return dbCore.find(modelName,query,null,sort,limit,skip);
 			}
 			else
 			{
