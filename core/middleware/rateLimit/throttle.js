@@ -5,7 +5,7 @@ module.exports= function (options) {
 		return false;
 	else
 	{
-		if(rateLimitConfig.routes.hasOwnProperty(options.controller) && rateLimitConfig.routes[options.controller].hasOwnProperty(options.action) && rateLimitConfig.routes[options.controller][options.action])
+		if(rateLimitConfig.hasOwnProperty('routes') && rateLimitConfig.routes.hasOwnProperty(options.controller) && rateLimitConfig.routes[options.controller].hasOwnProperty(options.action) && rateLimitConfig.routes[options.controller][options.action])
 		{
 			console.log('Is throttling');
 			return true;

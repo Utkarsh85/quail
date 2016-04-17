@@ -9,14 +9,17 @@ module.exports= function (req,res,next) {
 		var token=req.headers['authorization'].split('Bearer ')[1];
 
 		if(!TokenLib.verify(token))
-			return res.status(403).json({msg:"Forbidden Access"});
+			return res.status(403).json({msg:"Forbidden Access, malformed token supplied"});
 
 	    var decoded= TokenLib.payload(token);
 
-	    if(decoded.code != 4001)
-	    	return res.status(403).json("Token not verified");
+	    // if(decoded.code != 4001)
+	    // 	return res.status(403).json("Token not verified");
+	    var authName='authenticated';
+	    if(decoded.hasOwnProperty('auth'))
+	    	authName=decoded.auth;
 
-	    if( AclVerify.verify({auth:'authenticated',controller:req.options.controller, action:req.options.action,relation:req.options.alias}) )
+	    if( AclVerify.verify({auth:authName,controller:req.options.controller, action:req.options.action,relation:req.options.alias}) )
 	    {
 			req.user={};
 			req.user.id=decoded.base;

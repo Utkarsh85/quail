@@ -8,10 +8,10 @@ module.exports= function (app) {
 		app.options('*', cors(corsConfig));
 		app.use(cors(corsConfig));
 	}
-	else
-	{
-		app.options('*', cors());
-		app.use(cors());
-	}
+	// else
+	// {
+	// 	app.options('*', cors());
+	// 	app.use(cors());
+	// }
 	return app;
 }

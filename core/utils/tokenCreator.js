@@ -1,41 +1,41 @@
 var jwt = require('jsonwebtoken');
 var moment= require('moment');
+var tokenConfig= require(require('path').resolve('./config/token'));
+
+var secret= tokenConfig.secret || 'I hate you like I love you love you love you!!!';
+var algorithm= tokenConfig.algorithm || 'HS512';
+var validity= tokenConfig.validity||14;
 
 tokenCreator={};
-var secret= process.env.TOKEN_SECRET || 'I hate you like I love you love you love you!!!';
-
-tokenCreator.create = function (id) {
+tokenCreator.create = function (id,obj) {
 	var payload = {
     base: id,
-    code: 4001,
     iat: moment().unix(),
-    exp: moment().add(14, 'days').unix()
+    exp: moment().add(validity, 'days').unix()
   };
-  return jwt.sign(payload, secret,{ algorithm: 'HS512'});
-}
 
-tokenCreator.createregister = function (id) {
-	var payload = {
-    base: id,
-    code: 4000,
-    iat: moment().unix(),
-    exp: moment().add(14, 'days').unix()
-  };
-  return jwt.sign(payload, secret,{ algorithm: 'HS512'});
+  if(obj)
+  {
+	  for(var key in obj)
+	  {
+	  	if(['base','iat','exp'].indexOf(key) < 0)
+		  	payload[key]=obj[key];
+	  }	
+  }
+  return jwt.sign(payload, secret,{ algorithm: algorithm});
 }
 
 tokenCreator.verify = function (token) {
 	try
 	{
-		var decoded = jwt.verify(token,secret,{ algorithm: 'HS512'});
+		var decoded = jwt.verify(token,secret,{ algorithm: algorithm});
 	}
 	
 	catch(err)
 	{
-		console.log(err);
 		return false;
 	}
-	console.log(decoded);
+
 	if(decoded.exp> moment().unix())
 		return true;
 	else
@@ -43,7 +43,7 @@ tokenCreator.verify = function (token) {
 }
 
 tokenCreator.payload = function (token) {
-	return jwt.decode(token,secret,{ algorithm: 'HS512'});
+	return jwt.decode(token,secret,{ algorithm: algorithm});
 }
 
 module.exports= tokenCreator;
