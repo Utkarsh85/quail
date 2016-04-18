@@ -1,4 +1,4 @@
-# Quail (alpha)
+# Quail
 Hassle free mongodb rest app
 # Features
 * Uses ACL (Access Control List) to better manage routes. So no route management.
@@ -12,3 +12,4 @@ Hassle free mongodb rest app
 ```sh
 npm install --save quail-rest
 ```
+More Coming Soon ...

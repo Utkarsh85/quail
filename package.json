@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "ajv": "^3.8.10",
+    "aws-sdk": "^2.3.3",
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
     "connect-busboy": "0.0.2",
