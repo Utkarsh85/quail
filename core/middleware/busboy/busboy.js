@@ -40,6 +40,8 @@ function (req,res,next) {
 		    });
 		});
 	    req.pipe(req.busboy);
+	    req.busboy.on('finish', next);
 	}
-	next();
+	else
+	    next();
 }]
