@@ -14,14 +14,14 @@ module.exports= function (model,selector,obj,embeded) {
 
 		db.collection( model ).updateOne(selectObj,{"$set":obj},function (err,docs) {
 			if(err)
-				reject(err);
+				return reject(err);
 
 			findOne(model,selectObj)
 			.then(function (docs) {
-				resolve(docs);
+				return resolve(docs);
 			})
 			.catch(function (err) {
-				reject(err);
+				return reject(err);
 			});				
 		});
 	});

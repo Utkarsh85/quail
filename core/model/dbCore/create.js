@@ -11,12 +11,12 @@ module.exports= function (model,obj,embeded,embedParentId) {
 		return new Promise(function (resolve,reject) {
 			db.collection( model ).insert(obj,function (err,docs) {
 				if(err)
-					reject(err);
+					return reject(err);
 				var created=docs.ops.map(function (val) {
 					val._id= val._id.toString();
 					return val;
 				})
-				resolve(created[0]);
+				return resolve(created[0]);
 			});
 		});
 	}
@@ -26,7 +26,7 @@ module.exports= function (model,obj,embeded,embedParentId) {
 
 			if(!embedParentId)
 			{
-				reject({err:"Embeded Parent ID required"});
+				return reject({err:"Embeded Parent ID required"});
 			}
 			var createObj={};
 			obj["_id"]=new require('mongodb').ObjectID();
@@ -36,15 +36,15 @@ module.exports= function (model,obj,embeded,embedParentId) {
 			   { $push : createObj },
 			   function (err) {
 				if(err)
-					reject(err);
+					return reject(err);
 				
 				findOne(model,obj["_id"].toJSON(),embeded,embedParentId)
 				.then(function (docs) {
-					resolve(docs);
+					return resolve(docs);
 				})
 				.catch(function (err) {
-					reject(err);
-				})
+					return reject(err);
+				});
 			});
 		});
 	}

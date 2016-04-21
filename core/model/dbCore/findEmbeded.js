@@ -54,13 +54,13 @@ module.exports= function (model,query,embeded,sort,limit,skip) {
 		.aggregate(queryParams,function (err,docs) {
 			console.log(err);
 			if(err)
-				reject(err);
+				return reject(err);
 			var arr=[];
 			console.log(docs);
 			docs.map(function (val) {
 				arr=arr.concat(val[model]);
 			});
-			resolve(arr);
+			return resolve(arr);
 		});
 	});
 

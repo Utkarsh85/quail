@@ -12,7 +12,7 @@ module.exports= function (model,obj,embeded,embedParentId) {
 
 		if(!embedParentId)
 		{
-			reject({err:"Embeded Parent ID required"});
+			return reject({err:"Embeded Parent ID required"});
 		}
 
 		var createObj={};
@@ -28,10 +28,10 @@ module.exports= function (model,obj,embeded,embedParentId) {
 			return findOneEmbeded(model,obj["_id"],embeded,embedParentId);
 		})
 		.then(function (docs) {
-			resolve(docs);
+			return resolve(docs);
 		})
 		.catch(function (err) {
-			reject(err);
+			return reject(err);
 		});
 	});
 	

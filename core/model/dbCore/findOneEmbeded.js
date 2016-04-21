@@ -14,7 +14,7 @@ module.exports= function (model,query,embeded) {
 		
 		db.collection( embeded ).find(queryObj,queryObj).toArray(function (err,docs) {
 			if(err)
-				reject(err);
+				return reject(err);
 
 			var arr=[];
 
@@ -22,9 +22,9 @@ module.exports= function (model,query,embeded) {
 				arr=arr.concat(val[model]);
 			})
 			if(arr.length)
-				resolve(arr[0]);
+				return resolve(arr[0]);
 			else
-				resolve(arr);
+				return resolve(arr);
 		});
 	});
 	

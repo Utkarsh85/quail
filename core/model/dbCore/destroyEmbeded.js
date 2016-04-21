@@ -31,12 +31,12 @@ module.exports= function (model,selector,embeded) {
 		})
 		.then(function (docs) {
 			if(docs.result.ok)
-				resolve(TobeDeleted);
+				return resolve(TobeDeleted);
 			else
-				reject({err:"Document does not exist"});
+				return reject({err:"Document does not exist"});
 		})
 		.catch(function (err) {
-			reject(err);
+			return reject(err);
 		});
 	});
 	

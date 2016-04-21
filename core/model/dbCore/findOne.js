@@ -10,9 +10,9 @@ module.exports= function (model,query) {
 		queryObj= queryUtil.id_obj(query);
 		db.collection( model ).findOne(queryObj,function (err,docs) {
 			if(err)
-				reject(err);
+				return reject(err);
 
-			resolve(docs);
+			return resolve(docs);
 		});
 	});
 }

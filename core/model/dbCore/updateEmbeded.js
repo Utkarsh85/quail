@@ -23,10 +23,10 @@ module.exports= function (model,selector,obj,embeded) {
 			return findOneEmbeded(model,selectObj[model+"._id"],embeded);
 		})
 		.then(function (docs) {
-			resolve(docs);
+			return resolve(docs);
 		})
 		.catch(function (err) {
-			reject(err);
+			return reject(err);
 		});
 	});
 }

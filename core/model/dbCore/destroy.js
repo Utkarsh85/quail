@@ -24,10 +24,10 @@ module.exports= function (model,selector) {
 			if(docs.result.ok)
 				resolve(TobeDeleted);
 			else
-				reject({err:"Document does not exist"});
+				return reject({err:"Document does not exist"});
 		})
 		.catch(function (err) {
-			reject(err);
+			return reject(err);
 		});
 
 	});
