@@ -3,13 +3,17 @@ var Promise = require('bluebird');
 var utils= require('./utils/utils');
 var queryUtil= require('./utils/query');
 
-module.exports= function (model,query,embeded,sort,limit,skip) {
+module.exports= function (model,query,embeded,sort,limit,skip,embededId) {
 	var db = require( '../../db/mongodb/mongodb' ).getDb();
 
 	return new Promise(function (resolve,reject) {
 
 		var queryObj=queryUtil.embeded_id_obj(query,model);
 
+		if(embededId)
+		{
+			queryObj["_id"]=queryUtil.id_obj(embededId)._id;
+		}
 		// console.log(queryObj);
 
 		var $model= "$"+model;

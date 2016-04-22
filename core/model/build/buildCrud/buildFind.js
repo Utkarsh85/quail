@@ -43,7 +43,7 @@ findEmbeded.prototype.exec = function() {
 	}
 	else
 	{
-		return dbCore.findEmbeded(this.modelName,this.query,this.model.embeded,this.sort,this.limit,this.skip);
+		return dbCore.findEmbeded(this.modelName,this.query,this.model.embeded,this.sort,this.limit,this.skip,this.embededId);
 	}
 };
 
