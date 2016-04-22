@@ -1,28 +1,18 @@
 var dbCore= require('require-all')( require("path").resolve(__dirname,'../dbCore') );
 var validate= require('../validation/validate');
+var buildFind= require('./buildCrud/buildFind');
 
 module.exports= function (modelName,model) {
+
+	var buildFindBindFunc= buildFind.bind(null,modelName,model);
+	
 	return{
+
 		model: model,
 		modelName: modelName,
-		find: function (query,sort,limit,skip) {
-			if(!model.hasOwnProperty('embeded'))
-			{
-				if(model.hasOwnProperty('noProjection') && Array.isArray(model.noProjection))
-				{
-					var projectionObj={};
-					model.noProjection.map(function (val) {
-						projectionObj[val]=0;
-					});
-					return dbCore.find(modelName,query,projectionObj,sort,limit,skip);
-				}
-				else
-					return dbCore.find(modelName,query,null,sort,limit,skip);
-			}
-			else
-			{
-				return dbCore.findEmbeded(modelName,query,model.embeded,sort,limit,skip);
-			}
+		
+		find: function (query) {
+			return new buildFindBindFunc(query);
 		},
 
 		findOne : function (query) {
