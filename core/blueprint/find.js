@@ -24,7 +24,7 @@ module.exports= function (req,res,next) {
 	}
 
 	console.log(query);
-	Models[req.options.controller].find(query,sort,limit,skip)
+	Models[req.options.controller].find(query,sort,limit,skip).exec()
 	.then(function (model_found) {
 		return res.json(model_found);
 	})

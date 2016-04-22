@@ -22,7 +22,7 @@ findEmbeded.prototype.skip = function(limit) {
 };
 
 findEmbeded.prototype.embededId = function(id) {
-	this.embededId= id;
+	this.embededParentId= id;
 	return this;
 };
 
@@ -43,7 +43,7 @@ findEmbeded.prototype.exec = function() {
 	}
 	else
 	{
-		return dbCore.findEmbeded(this.modelName,this.query,this.model.embeded,this.sort,this.limit,this.skip,this.embededId);
+		return dbCore.findEmbeded(this.modelName,this.query,this.model.embeded,this.sort,this.limit,this.skip,this.embededParentId);
 	}
 };
 
