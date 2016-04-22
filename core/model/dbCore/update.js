@@ -10,6 +10,9 @@ module.exports= function (model,selector,obj,embeded) {
 
 	return new Promise(function (resolve,reject) {
 
+		if(!selector)
+			selector={};
+
 		var selectObj= queryUtil.id_obj(selector);
 
 		db.collection( model ).updateOne(selectObj,{"$set":obj},function (err,docs) {

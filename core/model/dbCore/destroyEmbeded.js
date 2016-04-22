@@ -10,6 +10,9 @@ module.exports= function (model,selector,embeded) {
 
 	return new Promise(function (resolve,reject) {
 
+		if(!selector)
+			selector={};
+
 		selector= queryUtil.id_obj(selector);
 		var TobeDeleted;
 

@@ -10,6 +10,9 @@ module.exports= function (model,selector,obj,embeded) {
 	
 	return new Promise(function (resolve,reject) {
 
+		if(!selector)
+			selector={};
+		
 		var selectObj=queryUtil.embeded_id_obj(selector,model);
 
 		var updateObj=queryUtil.$_obj(obj,model);
