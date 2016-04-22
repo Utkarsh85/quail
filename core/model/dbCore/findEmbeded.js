@@ -8,6 +8,8 @@ module.exports= function (model,query,embeded,sort,limit,skip,embededId) {
 
 	return new Promise(function (resolve,reject) {
 
+		if(!query)
+			query={};
 		var queryObj=queryUtil.embeded_id_obj(query,model);
 
 		if(embededId)
