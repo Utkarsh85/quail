@@ -9,6 +9,8 @@ module.exports= function (model,query,embeded) {
 	return new Promise(function (resolve,reject) {
 		
 		var queryObj={};
+		if(!query)
+			query={};
 		
 		queryObj[model]={ "$elemMatch" : queryUtil.id_obj(query) };
 		
