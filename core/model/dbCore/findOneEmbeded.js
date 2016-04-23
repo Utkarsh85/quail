@@ -26,7 +26,7 @@ module.exports= function (model,query,embeded) {
 			if(arr.length)
 				return resolve(arr[0]);
 			else
-				return resolve({});
+				return resolve(null);
 		});
 	});
 	
