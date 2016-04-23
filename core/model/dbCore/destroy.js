@@ -28,7 +28,7 @@ module.exports= function (model,selector) {
 			if(docs.result.ok)
 				resolve(TobeDeleted);
 			else
-				return reject({err:"Document does not exist"});
+				return resolve([]);
 		})
 		.catch(function (err) {
 			return reject(err);

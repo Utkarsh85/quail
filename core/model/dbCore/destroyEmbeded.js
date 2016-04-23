@@ -36,7 +36,7 @@ module.exports= function (model,selector,embeded) {
 			if(docs.result.ok)
 				return resolve(TobeDeleted);
 			else
-				return reject({err:"Document does not exist"});
+				return resolve([]);
 		})
 		.catch(function (err) {
 			return reject(err);
