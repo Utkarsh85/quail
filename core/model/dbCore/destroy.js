@@ -9,6 +9,10 @@ module.exports= function (model,selector) {
 	var db = require( '../../db/mongodb/mongodb' ).getDb();
 
 	return new Promise(function (resolve,reject) {
+
+		if(!selector)
+			selector={};
+		
 		var selectorObj= queryUtil.id_obj(selector);
 		
 		var TobeDeleted;
