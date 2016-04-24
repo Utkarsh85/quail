@@ -7,7 +7,7 @@ var findEmbeded= function (modelName,model,query) {
 }
 
 findEmbeded.prototype.limit = function(limit) {
-	if( !isNaN(parseInt(limit)) )
+	if(limit && !isNaN(parseInt(limit))  && parseInt(limit) >0 )
 	{
 		this.limitVal= parseInt(limit);
 	}
@@ -15,12 +15,15 @@ findEmbeded.prototype.limit = function(limit) {
 };
 
 findEmbeded.prototype.sort = function(sort) {
-	this.sortVal= sort;
+	if( sort.constructor=== "Object" || Array.isArray(sort))
+	{
+		this.sortVal= sort;
+	}
 	return this;
 };
 
 findEmbeded.prototype.skip = function(skip) {
-	if( !isNaN(parseInt(skip)) )
+	if( skip && !isNaN(parseInt(skip))  && parseInt(skip) >0 )
 	{
 		this.skipVal= parseInt(skip);
 	}

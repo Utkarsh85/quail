@@ -41,7 +41,7 @@ module.exports= function (model,query,embeded,sort,limit,skip,embededId) {
 			additionalParams.push({"$skip" : parseInt(skip)});
 		}
 
-		if(limit && !isNaN(parseInt(skip))  && parseInt(limit) >0 )
+		if(limit && !isNaN(parseInt(limit))  && parseInt(limit) >0 )
 		{
 			additionalParams.push({"$limit" : parseInt(limit)});
 		}
