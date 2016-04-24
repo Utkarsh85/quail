@@ -15,7 +15,7 @@ findEmbeded.prototype.limit = function(limit) {
 };
 
 findEmbeded.prototype.sort = function(sort) {
-	if( sort.constructor=== "Object" || Array.isArray(sort))
+	if( sort.constructor=== Object || Array.isArray(sort))
 	{
 		this.sortVal= sort;
 	}
