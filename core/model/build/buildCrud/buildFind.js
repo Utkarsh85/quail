@@ -7,17 +7,23 @@ var findEmbeded= function (modelName,model,query) {
 }
 
 findEmbeded.prototype.limit = function(limit) {
-	this.limit= limit;
+	if( !isNaN(parseInt(limit)) )
+	{
+		this.limitVal= parseInt(limit);
+	}
 	return this;
 };
 
-findEmbeded.prototype.sort = function(limit) {
-	this.limit= limit;
+findEmbeded.prototype.sort = function(sort) {
+	this.sortVal= sort;
 	return this;
 };
 
-findEmbeded.prototype.skip = function(limit) {
-	this.limit= limit;
+findEmbeded.prototype.skip = function(skip) {
+	if( !isNaN(parseInt(skip)) )
+	{
+		this.skipVal= parseInt(skip);
+	}
 	return this;
 };
 
@@ -36,14 +42,14 @@ findEmbeded.prototype.exec = function() {
 			this.model.noProjection.map(function (val) {
 				projectionObj[val]=0;
 			});
-			return dbCore.find(this.modelName,this.query,projectionObj,this.sort,this.limit,this.skip);
+			return dbCore.find(this.modelName,this.query,projectionObj,this.sortVal,this.limitVal,this.skipVal);
 		}
 		else
-			return dbCore.find(this.modelName,this.query,null,this.sort,this.limit,this.skip);
+			return dbCore.find(this.modelName,this.query,null,this.sortVal,this.limitVal,this.skipVal);
 	}
 	else
 	{
-		return dbCore.findEmbeded(this.modelName,this.query,this.model.embeded,this.sort,this.limit,this.skip,this.embededParentId);
+		return dbCore.findEmbeded(this.modelName,this.query,this.model.embeded,this.sortVal,this.limitVal,this.skipVal,this.embededParentId);
 	}
 };
 

@@ -54,15 +54,15 @@ module.exports= function (model,query,embeded,sort,limit,skip,embededId) {
 		}
 
 		queryParams.push({"$group":$_query});
-		console.log(queryParams);
+		// console.log(queryParams);
 
 		db.collection( embeded )
 		.aggregate(queryParams,function (err,docs) {
-			console.log(err);
+			// console.log(err);
 			if(err)
 				return reject(err);
 			var arr=[];
-			console.log(docs);
+			// console.log(docs);
 			docs.map(function (val) {
 				arr=arr.concat(val[model]);
 			});
