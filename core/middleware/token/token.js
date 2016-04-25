@@ -36,6 +36,10 @@ module.exports= function (req,res,next) {
 	    {
 			return next();
 	    }
+	    else if(req.method==="OPTIONS")
+	    {
+	    	return next();
+	    }
 	    else
 	    	return res.status(403).json("Forbidden");
 	}
