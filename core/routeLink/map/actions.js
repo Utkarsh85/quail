@@ -13,7 +13,7 @@ module.exports= function (app,models,controllers) {
 		{
 			if(allSupportedActions.indexOf(key) <0)
 			{
-				app['post']('/'+lowerCaseModel+'/'+key,controllers[controllerName][key]);
+				app['all']('/'+lowerCaseModel+'/'+key,controllers[controllerName][key]);
 			}
 		}		
 		
@@ -35,7 +35,7 @@ module.exports= function (app,models,controllers) {
 		for(var key in controllers[controllerName])
 		{
 			// console.log(controllerName,' : ',key);
-			app['post']('/'+lowerCaseControllerName+'/'+key,controllers[controllerName][key]);	
+			app['all']('/'+lowerCaseControllerName+'/'+key,controllers[controllerName][key]);	
 		}	
 	});
 
