@@ -2,6 +2,7 @@ var mongoDB = require('mongodb');
 var Promise = require('bluebird');
 
 var findOne= require('./findOne');
+var findOneEmbeded= require('./findOneEmbeded');
 
 module.exports= function (modelName,model,obj,fields) {
 
@@ -41,7 +42,7 @@ module.exports= function (modelName,model,obj,fields) {
 	ModelReference.map(function (val) {
 		if(models[val.value].hasOwnProperty('embeded') )
 		{
-			PromiseArr.push(findOne(val.value,obj[val.key],models[val.value].embeded));
+			PromiseArr.push(findOneEmbeded(val.value,obj[val.key],models[val.value].embeded));
 		}
 		else
 		{
