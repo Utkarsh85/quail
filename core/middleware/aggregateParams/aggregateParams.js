@@ -3,23 +3,22 @@ var merge = require('deepmerge');
 module.exports= function (req,res,next) {
 	var params={};
 
-	if(req.body)
+	if(typeof(req.body) === "object")
 	{
 		params= merge(req.body,params);
 	}
 
-	if(req.params)
+	if(typeof(req.params) === "object")
 	{
 		params= merge(req.params,params);
 	}
 
-	if(req.query)
+	if(typeof(req.query) ==="object")
 	{
 		params= merge(req.query,params);
 	}
 
-	
-	req.params= params;
+	req.Params= params;
 
 	return next();
 }

@@ -7,7 +7,7 @@ module.exports= function (app) {
 
 	app.use(require('../middleware/busboy/busboy'));
 	app= require('../middleware/cors/cors')(app);
-	app= require('../middleware/aggregateParams/aggregateParams');
+	app.use(require('../middleware/aggregateParams/aggregateParams'));
 
 	app.use(require('../middleware/routeValidate/routeValidate'));
 	app.use(require('../middleware/routeOptions/routeOptions'));
