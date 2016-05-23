@@ -24,6 +24,7 @@
     "body-parser": "^1.15.0",
     "connect-busboy": "0.0.2",
     "cors": "^2.7.1",
+    "deepmerge": "^0.2.10",
     "express": "^4.13.4",
     "express-brute": "^0.5.3",
     "express-brute-mongo": "^0.1.0",
