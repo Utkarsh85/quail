@@ -2,7 +2,7 @@ var Ajv = require('ajv');
 
 module.exports= function (req,res,next) {
 	
-	req.validate= function (schema,obj,isRequired) {
+	req.validate= function (schema,Required,obj) {
 
 		var v = new Ajv();
 
@@ -17,13 +17,20 @@ module.exports= function (req,res,next) {
 		}
 
 		//If required is defined then work accordingly, or by defualt the required is set to true
-		if(isRequired)
-			buildSchema.required= required;
+		if(Required && Array.isArray(Required))
+			buildSchema.required= Required;
+
+		else if(Required === false)
+		{
+			
+		}
+
 		else if(typeof(isRequired) === "undefined")
 			buildSchema.required= required;
 
 		buildSchema.properties= schema;
 
+		// console.log(buildSchema);
 		if(obj)
 			var isValid = v.validate(buildSchema,obj);
 		else			
