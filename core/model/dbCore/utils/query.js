@@ -23,9 +23,9 @@ query.id_obj= function (id) {
 
 		for(var key in id)
 		{
-			if(utils.isValidObjectID(id[key]))
-				obj[key]=utils.convert_id_to_BSON_safe(id[key]);
-			else
+			// if(utils.isValidObjectID(id[key]))
+			// 	obj[key]=utils.convert_id_to_BSON_safe(id[key]);
+			// else
 				obj[key]=id[key];
 		}
 		return obj;
@@ -59,9 +59,9 @@ query.embeded_id_obj= function (id,model) {
 
 		for(var key in id)
 		{
-			if(utils.isValidObjectID(id[key]))
-				obj[model+'.'+key]=utils.convert_id_to_BSON_safe(id[key]);
-			else
+			// if(utils.isValidObjectID(id[key]))
+			// 	obj[model+'.'+key]=utils.convert_id_to_BSON_safe(id[key]);
+			// else
 				obj[model+'.'+key]=id[key];
 		}
 		return obj;
