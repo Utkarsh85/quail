@@ -46,7 +46,16 @@ module.exports= function (modelName,model,obj,fields) {
 		}
 		else
 		{
-			PromiseArr.push(findOne(val.value,obj[val.key]));
+			if(models[val.value].hasOwnProperty('noProjection') && Array.isArray(models[val.value].noProjection))
+			{
+				var projectionObj={};
+				models[val.value].noProjection.map(function (val) {
+					projectionObj[val]=0;
+				});
+				PromiseArr.push(findOne(val.value,obj[val.key],projectionObj));
+			}
+			else
+				PromiseArr.push(findOne(val.value,obj[val.key]));
 		} 
 	});
 

@@ -18,7 +18,16 @@ module.exports= function (modelName,model) {
 		findOne : function (query) {
 			if(!model.hasOwnProperty('embeded'))
 			{
-				return dbCore.findOne(modelName,query);
+				if(model.hasOwnProperty('noProjection') && Array.isArray(model.noProjection))
+				{
+					var projectionObj={};
+					model.noProjection.map(function (val) {
+						projectionObj[val]=0;
+					});
+					return dbCore.findOne(modelName,query,projectionObj);
+				}
+				else
+					return dbCore.findOne(modelName,query);
 			}
 			else
 			{
@@ -34,12 +43,12 @@ module.exports= function (modelName,model) {
 			{
 				return validate(modelName,model,obj)
 				.then(function () {
-					if(!model.autoCreatedAt)
+					if(typeof(model.autoCreatedAt)=="undefined" || model.autoCreatedAt)
 					{
 						obj.createdAt= new Date();
 					}
 
-					if(!model.autoUpdatedAt)
+					if(typeof(model.autoUpdatedAt)=="undefined" || model.autoUpdatedAt)
 					{
 						obj.updatedAt= new Date();
 					}
@@ -51,12 +60,12 @@ module.exports= function (modelName,model) {
 				return validate(modelName,model,obj)
 				.then(function () {
 					// return dbCore.create(modelName,obj);
-					if(!model.autoCreatedAt)
+					if(typeof(model.autoCreatedAt)=="undefined" || model.autoCreatedAt)
 					{
 						obj.createdAt= new Date();
 					}
 
-					if(!model.autoUpdatedAt)
+					if(typeof(model.autoUpdatedAt)=="undefined" || model.autoUpdatedAt)
 					{
 						obj.updatedAt= new Date();
 					}
@@ -72,7 +81,7 @@ module.exports= function (modelName,model) {
 			{
 				return validate(modelName,model,obj)
 				.then(function () {
-					if(!model.autoUpdatedAt)
+					if(typeof(model.autoUpdatedAt)=="undefined" || model.autoUpdatedAt)
 					{
 						obj.updatedAt= new Date();
 					}
@@ -83,7 +92,7 @@ module.exports= function (modelName,model) {
 			{
 				return validate(modelName,model,obj)
 				.then(function () {
-					if(!model.autoUpdatedAt)
+					if(typeof(model.autoUpdatedAt)=="undefined" || model.autoUpdatedAt)
 					{
 						obj.updatedAt= new Date();
 					}
