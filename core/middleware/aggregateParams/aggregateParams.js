@@ -1,4 +1,5 @@
 var merge = require('deepmerge');
+var objectTraverseClean= require('object-traverse-clean');
 
 module.exports= function (req,res,next) {
 	var params={};
@@ -18,7 +19,7 @@ module.exports= function (req,res,next) {
 		params= merge(req.query,params);
 	}
 
-	req.Params= params;
+	req.Params= objectTraverseClean(params);
 
 	return next();
 }
