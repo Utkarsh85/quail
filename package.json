@@ -32,12 +32,16 @@
     "jsonwebtoken": "^5.7.0",
     "mime-types": "^2.1.10",
     "moment": "^2.12.0",
-    "mongodb": "^2.1.15",
+    "mongodb": "^2.1.21",
     "node-uuid": "^1.4.7",
     "require-all": "^2.0.0"
   },
   "bugs": {
     "url": "https://github.com/Utkarsh85/quail/issues"
   },
-  "homepage": "https://github.com/Utkarsh85/quail#readme"
+  "homepage": "https://github.com/Utkarsh85/quail#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "unique-slug": "^2.0.0"
+  }
 }
