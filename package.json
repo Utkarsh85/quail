@@ -34,7 +34,7 @@
     "moment": "^2.12.0",
     "mongodb": "^2.1.21",
     "node-uuid": "^1.4.7",
-    "object-traverse-clean": "^1.0.2",
+    "object-traverse-clean": "^1.0.3",
     "require-all": "^2.0.0"
   },
   "bugs": {
