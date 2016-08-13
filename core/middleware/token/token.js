@@ -9,7 +9,7 @@ module.exports= function (req,res,next) {
 		var token=req.headers['authorization'].split('Bearer ')[1];
 
 		if(!TokenLib.verify(token))
-			return res.status(401).json({msg:"Unauthorized Access, malformed token supplied"});
+			return res.status(401).json({msg:"Unauthorized Access, malformed token supplied",status:4300});
 
 	    var decoded= TokenLib.payload(token);
 
@@ -26,7 +26,7 @@ module.exports= function (req,res,next) {
 			return next();
 	    }
 	    else
-	    	return res.status(401).json("Unauthorized Access");
+	    	return res.status(401).json({msg:"Unauthorized Access",status:4301});
 	}
 
 	//No auth-token header
@@ -41,7 +41,7 @@ module.exports= function (req,res,next) {
 	    	return next();
 	    }
 	    else
-	    	return res.status(401).json("Unauthorized Access");
+	    	return res.status(401).json({msg:"Unauthorized Access",status:4302});
 	}
 
 }

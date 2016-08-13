@@ -24,7 +24,12 @@ module.exports= function (filesObj) {
 			var bucket=fileObj.bucket;
 			var acl=fileObj.acl || "public-read";
 			var resize= fileObj.resize || 60;
-			var newFileName=filename()+'.'+mime.extension(fileObj.file.mimetype);
+			var newFileName;
+
+			if(fileObj.hasOwnProperty('name'))
+				newFileName=fileObj.name+'.'+mime.extension(fileObj.file.mimetype);
+			else
+				newFileName=filename()+'.'+mime.extension(fileObj.file.mimetype);
 
 			
 			gm(fileObj.file.buffer)

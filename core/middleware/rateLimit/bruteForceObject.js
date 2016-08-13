@@ -1,6 +1,8 @@
 var ExpressBrute = require('express-brute');
 var MongoStore = require('express-brute-mongo');
 
+var bruteforceConfig= require( require("path").resolve('./config/rateLimit') );
+
 var _bruteforce;
 module.exports= {
 	
@@ -19,14 +21,15 @@ module.exports= {
 		    };
 		}
 		
+
 		var bruteforce = new ExpressBrute(store,{
-		    freeRetries: 20,
-		    proxyDepth: 2,
+		    freeRetries: bruteforceConfig.freeRetries || 20,
+		    proxyDepth: bruteforceConfig.proxyDepth || 2,
 		    // attachResetToRequest: false,
 		    refreshTimeoutOnRequest: false,
-		    minWait: 1*1000, // 1 day 1 hour (should never reach this wait time)
-		    maxWait: 60*1000, // 1 day 1 hour (should never reach this wait time)
-		    lifetime: 60*60, // 1 day (seconds not milliseconds)
+		    minWait: bruteforceConfig.minWait || 1*1000, // 1 day 1 hour (should never reach this wait time)
+		    maxWait: bruteforceConfig.maxWait || 60*1000, // 1 day 1 hour (should never reach this wait time)
+		    lifetime: bruteforceConfig.lifetime || 60*60, // 1 day (seconds not milliseconds)
 		    // failCallback: failCallback,
 		    handleStoreError: handleStoreError
 		});
