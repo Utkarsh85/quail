@@ -55,6 +55,6 @@ module.exports= function (req,res,next) {
 			break;
 	}
 	req.options= options;
-	console.log(options)
+	// console.log(options)
 	return next();
 }
