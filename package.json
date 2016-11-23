@@ -33,9 +33,9 @@
     "mime-types": "^2.1.10",
     "moment": "^2.12.0",
     "mongodb": "^2.1.21",
-    "node-uuid": "^1.4.7",
     "object-traverse-clean": "^1.0.3",
-    "require-all": "^2.0.0"
+    "require-all": "^2.0.0",
+    "uuid": "^3.0.0"
   },
   "bugs": {
     "url": "https://github.com/Utkarsh85/quail/issues"
