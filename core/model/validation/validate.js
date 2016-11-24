@@ -12,7 +12,7 @@ module.exports= function (modelname,model,instance) {
 	}
 
 	return new Promise(function (resolve,reject) {
-		var v = new Ajv();
+		var v = new Ajv({ useDefaults: true });
 		var isValid = v.validate(model.schema, instance);
 
 		if(isValid)
